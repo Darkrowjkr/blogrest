@@ -15,7 +15,7 @@ class UserController extends Controller
         return User::all();
     }
 
-    public function get($user)
+    public function get(Request $req, $user)
     {
         if($req->user()->rol != 'A') return response()->json(['status'=>'failed'], 401);
         $result = User::find($user);
@@ -56,7 +56,7 @@ class UserController extends Controller
             return response()->json(['status'=>'failed'], 404); 
     }
 
-    public function destroy($user)
+    public function destroy(Request $req, $user)
     {
         if($req->user()->rol != 'A') return response()->json(['status'=>'failed'], 401);
         $datos = User::find($user);
